@@ -38,3 +38,9 @@ out/
 
 ### Eclipse ###
 .project
+
+# Maven
+target/
+
+# Arquivos compilados
+*.class
