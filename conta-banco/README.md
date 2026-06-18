@@ -42,11 +42,8 @@ conta-banco/
 │
 ├── src/
 │   ├── main/
-│   │   └── java/
-│   │       └── br/
-│   │           └── com/
-│   │               └── clarojava/
-│   │                   └── challenge/
+│   │   └── java/br/com/clarojavachallenge/contaterminal
+│   │       └── ContaTerminal.java
 │   │
 │   └── test/
 │       └── java/
@@ -56,7 +53,6 @@ conta-banco/
 │                       └── challenge/
 │                           └── ChallengeApplicationTests.java
 │
-├── pom.xml
 └── README.md
 ```
 
