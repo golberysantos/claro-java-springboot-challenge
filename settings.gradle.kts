@@ -1,1 +1,1 @@
-rootProject.name = "clarojavachallenge"
+rootProject.name = "ContaBanco"
