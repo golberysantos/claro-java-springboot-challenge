@@ -20,8 +20,6 @@ public class ContaTerminal {
 		String nomeCliente;
 		double saldo;
 
-		System.out.println("\n Locale padrão: " + Locale.getDefault());
-
 		System.out.println("Por favor, digite o numero da conta:");
 		numero = scanner.nextInt();
 
