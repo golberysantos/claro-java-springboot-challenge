@@ -41,6 +41,7 @@ public class ContaTerminal {
 				.concat(" ja esta disponivel para saque.");
 
 		System.out.println(mensagem);
+		System.out.println("\n\n\n.");
 	}
 
 	private static double lerSaldo(Scanner scanner) {
