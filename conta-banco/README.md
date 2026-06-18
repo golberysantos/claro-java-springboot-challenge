@@ -109,4 +109,4 @@ Durante o bootcamp são abordados temas como:
 
 
 ---
-⭐ Projeto desenvolvido para fins educacionais durante a Trilha Claro - Java com String Boot, módulo Java Básico da DIO.
+⭐ Projeto desenvolvido para fins educacionais durante o Bootcamp **Claro - Java com Spring Boot**.
