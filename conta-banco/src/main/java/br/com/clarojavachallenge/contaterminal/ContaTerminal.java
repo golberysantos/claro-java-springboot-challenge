@@ -33,7 +33,7 @@ public class ContaTerminal {
 		nomeCliente = scanner.nextLine();
 
 		System.out.println("Por favor, digite o saldo da conta:");
-		saldo = scanner.nextDouble();
+		saldo = lerSaldo(scanner);
 
 		scanner.close();
 
@@ -43,5 +43,17 @@ public class ContaTerminal {
 				.concat(" ja esta disponivel para saque.");
 
 		System.out.println(mensagem);
+	}
+
+	private static double lerSaldo(Scanner scanner) {
+		while (true) {
+			try {
+				String entrada = scanner.nextLine().trim();
+				entrada = entrada.replace(",", ".");
+				return Double.parseDouble(entrada);
+			} catch (NumberFormatException e) {
+				System.out.println("Valor inválido. Digite o saldo novamente:");
+			}
+		}
 	}
 }
