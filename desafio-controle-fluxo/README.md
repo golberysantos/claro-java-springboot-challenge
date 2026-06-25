@@ -11,38 +11,6 @@ Se o primeiro parâmetro for maior que o segundo, o sistema lança uma exceção
 
 ---
 
-## Fluxo de Dados
-
-```
-Entrada (terminal)
-     │
-     ▼
-┌─────────────────────┐
-│  Scanner (stdin)    │  lê parametroUm e parametroDois
-└────────┬────────────┘
-         │
-         ▼
-┌─────────────────────────────────────────┐
-│  contar(parametroUm, parametroDois)     │
-│                                         │
-│  parametroUm > parametroDois?           │
-│        │ sim              │ não         │
-│        ▼                  ▼             │
-│  throw Parametros    contagem =         │
-│  InvalidosException  parametroDois -    │
-│                      parametroUm        │
-│                           │             │
-│                           ▼             │
-│                  for i = 1 até contagem │
-│                  "Imprimindo o número i"│
-└─────────────────────────────────────────┘
-         │
-         ▼
-    Saída (console)
-```
-
----
-
 ## Estrutura do Projeto
 
 ```
