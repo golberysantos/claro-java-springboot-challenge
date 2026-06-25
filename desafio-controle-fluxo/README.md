@@ -1,7 +1,7 @@
 # Desafio Controle de Fluxo
 
-Projeto desenvolvido como parte do **Bootcamp Santander 2026 - AI Java Back-end** na plataforma [DIO](https://www.dio.me/).
-
+Projeto desenvolvido como parte do **Bootcamp Claro - Java com Spring Boot** na plataforma [DIO](https://www.dio.me/).
+Desafio: https://github.com/digitalinnovationone/trilha-java-basico/tree/main/desafios/controle-fluxo
 ---
 
 ## Descrição
@@ -48,8 +48,11 @@ Entrada (terminal)
 ```
 DesafioControleFluxo/
 ├── src/
-│   ├── Contador.java
-│   └── ParametrosInvalidosException.java
+│   └── br/
+│       └── com/
+│           └── desafiocontrolefluxo/
+│               ├── Contador.java
+│               └── ParametrosInvalidosException.java
 └── README.md
 ```
 
@@ -86,12 +89,12 @@ public class ParametrosInvalidosException extends Exception {
 
 **1. Compilar:**
 ```bash
-javac Contador.java ParametrosInvalidosException.java
+javac -d bin src/br/com/desafiocontrolefluxo/*.java
 ```
 
 **2. Executar:**
 ```bash
-java Contador
+java -cp bin br.com.desafiocontrolefluxo.Contador
 ```
 
 **3. Informar os parâmetros quando solicitado:**
