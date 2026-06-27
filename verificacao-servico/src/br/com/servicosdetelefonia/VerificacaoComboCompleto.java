@@ -12,7 +12,7 @@ public class VerificacaoComboCompleto {
 
         // TODO: Itere sobre os serviços contratados        
         for (String servico : servicosContratados) {        	
-        	switch (servico.toLowerCase()) {
+        	switch (servico.trim().toLowerCase()) {
 			case "movel" -> movelContratado = true;
 			case "banda larga" -> bandaLargaContratada = true;
 			case "tv" -> tvContratada = true;			
