@@ -1,17 +1,163 @@
-# Criando um Banco Digital com Java e Orientação a Objetos
+# Banco Digital — POO com Java
 
+Projeto desenvolvido como parte do **Bootcamp Claro - Java com Spring Boot** na plataforma [DIO](https://www.dio.me/).
 
-Desafio: Considerando nosso conhecimento no domínio bancário, iremos abstrair uma solução Orientada a Objetos em Java. Para isso, vamos interpretar o seguinte cenário:
-“Um banco oferece aos seus clientes dois tipos de contas (corrente e poupança), as quais possuem as funcionalidades de depósito, saque e transferência (entre contas da própria instituição).”
+---
 
-### Abstração
-Habilidade de concentrar-se nos aspectos essenciais de um domínio, ignorando características menos importantes ou acidentais. Nesse contexto, objetos são abstrações de entidades existentes no domínio em questão.
+## Descrição
 
-### Encapsulamento
-Encapsular significa esconder a implementação dos objetos, criando assim interfaces de uso mais concisas e fáceis de usar/entender. O encapsulamento favorece principalmente dois aspectos de um sistema: a manutenção e a evolução.
+Implementação de um banco digital aplicando os quatro pilares da Programação Orientada a Objetos em Java. O sistema permite criar contas correntes e poupança, realizar depósitos, saques, transferências e emitir extratos individuais ou consolidados por banco.
 
-### Herança
-Permite que você defina uma classe filha que reutiliza (herda), estende ou modifica o comportamento de uma classe pai. A classe cujos membros são herdados é chamada de classe base. A classe que herda os membros da classe base é chamada de classe derivada.
+---
 
-### Polimorfismo
-Capacidade de um objeto poder ser referenciado de várias formas, ou seja, é capacidade de tratar objetos criados a partir das classes específicas como objetos de uma classe genérica. Cuidado, polimorfismo não quer dizer que o objeto fica se transformando, muito pelo contrário, um objeto nasce de um tipo e morre daquele tipo, o que pode mudar é a maneira como nos referimos a ele.
+## Diagrama UML
+
+```mermaid
+classDiagram
+    class IConta {
+        <<interface>>
+        +sacar(valor double)
+        +depositar(valor double)
+        +transferir(valor double, destino IConta)
+        +imprimirExtrato()
+    }
+
+    class Conta {
+        <<abstract>>
+        #agencia int
+        #numero int
+        #saldo double
+        #cliente Cliente
+        +sacar(valor double)
+        +depositar(valor double)
+        +transferir(valor double, destino IConta)
+        #imprimirInfosComuns()
+    }
+
+    class ContaCorrente {
+        +imprimirExtrato()
+    }
+
+    class ContaPoupanca {
+        +imprimirExtrato()
+    }
+
+    class Cliente {
+        -nome String
+        +getNome() String
+        +setNome(nome String)
+    }
+
+    class Banco {
+        -nome String
+        -contas List~Conta~
+        +adicionarConta(conta Conta)
+        +imprimirTodasAsContas()
+    }
+
+    IConta <|.. Conta : implements
+    Conta <|-- ContaCorrente : extends
+    Conta <|-- ContaPoupanca : extends
+    Conta --> Cliente : tem um
+    Banco --> Conta : agrega
+```
+
+---
+
+## Os Quatro Pilares aplicados
+
+**Abstração** — `Conta` é uma classe abstrata que modela o conceito genérico de conta bancária, sem representar um tipo específico. Apenas `ContaCorrente` e `ContaPoupanca` são instanciáveis.
+
+**Encapsulamento** — atributos como `saldo`, `agencia` e `numero` são protegidos (`protected`/`private`). O acesso externo ocorre apenas via getters e métodos de negócio como `sacar()` e `depositar()`.
+
+**Herança** — `ContaCorrente` e `ContaPoupanca` herdam de `Conta`, reutilizando toda a lógica comum e sobrescrevendo apenas `imprimirExtrato()`.
+
+**Polimorfismo** — as contas são referenciadas pelo tipo `Conta` ou `IConta`, permitindo que o `Banco` trate qualquer tipo de conta de forma uniforme.
+
+---
+
+## Evoluções em relação ao projeto de referência
+
+| Melhoria | Detalhe |
+|---|---|
+| Validação no `sacar()` | Impede saldo negativo e valores inválidos |
+| Validação no `depositar()` | Rejeita valores menores ou iguais a zero |
+| `Banco` conectado ao `Main` | Classe `Banco` passa a ser usada de fato |
+| `adicionarConta()` no Banco | Encapsula a adição de contas à lista |
+| `imprimirTodasAsContas()` | Extrato consolidado de todas as contas |
+| `String.formatted()` | Substituído `String.format()` estático pelo método de instância (Java 17+) |
+| Encoding corrigido | `ContaPoupança` com caractere especial corrigido |
+| Package declarado | Todas as classes organizadas em `br.com.bancodigital` |
+
+---
+
+## Estrutura do Projeto
+
+```
+BancoDigital/
+├── src/
+│   └── br/
+│       └── com/
+│           └── bancodigital/
+│               ├── IConta.java
+│               ├── Cliente.java
+│               ├── Conta.java
+│               ├── ContaCorrente.java
+│               ├── ContaPoupanca.java
+│               ├── Banco.java
+│               └── Main.java
+└── README.md
+```
+
+---
+
+## Como Executar
+
+**1. Compilar:**
+```bash
+javac -d bin src/br/com/bancodigital/*.java
+```
+
+**2. Executar:**
+```bash
+java -cp bin br.com.bancodigital.Main
+```
+
+**Saída esperada:**
+```
+Saldo insuficiente. Saldo atual: R$ 200,00
+
+=== Extrato Conta Corrente ===
+Titular: Venilton
+Agência: 1
+Número: 1
+Saldo: R$ 500,00
+
+=== Extrato Conta Poupança ===
+Titular: Venilton
+Agência: 1
+Número: 2
+Saldo: R$ 300,00
+
+=== Extrato Conta Corrente ===
+Titular: Maria
+Agência: 1
+Número: 3
+Saldo: R$ 200,00
+```
+
+---
+
+## Tecnologias
+
+- Java 21
+- Orientação a Objetos — abstração, encapsulamento, herança, polimorfismo
+- Interface como contrato de comportamento
+- `String.formatted()` — Java 17+
+
+---
+
+## Autor
+
+Desenvolvido durante o **Bootcamp Claro - Java com Spring Boot**
+Plataforma: [DIO — Digital Innovation One](https://www.dio.me/)
