@@ -12,7 +12,7 @@ public class Main {
 		for (String string : velocidades) {
 			total = total + Double.parseDouble(string);
 		}
-		return total;
+		return total / velocidades.length;
 	}
 
 	private static boolean validarEntrada(String[] velocidades) {
